@@ -11,10 +11,19 @@
 - name: Execute the Shell script to Genrate report
   shell: "wget https://raw.github.com/tdulcet/Linux-System-Information/master/info.sh -qO - | bash -s >> /tmp/report.txt"
 
-- name: Fetch all details in files
-  fetch:
-    src: /tmp/report.txt 
-    dest: files/ 
-    fail_on_missing: True 
-    validate_checksum: True 
-    flat: true 
+
+- name: Display /tmp/report.txt contents
+  command: cat report.txt chdir=/tmp
+  register: command_output
+
+- name: Print to console
+  debug:
+  msg: "{{command_output.stdout}}"
+
+#- name: Fetch all details in files
+#  fetch:
+#    src: /tmp/report.txt 
+#    dest: files/ 
+#    fail_on_missing: True 
+#    validate_checksum: True 
+#    flat: true 
