@@ -9,7 +9,7 @@
     mode: u+rwx,g-rx,o-rx
 
 - name: Execute the Shell script to Genrate report
-  shell: "bash -s /tmp/report.sh >> /tmp/report.txt"
+  shell: "wget https://raw.github.com/tdulcet/Linux-System-Information/master/info.sh -qO - | bash -s >> /tmp/report.txt"
 
 - name: Fetch all details in files
   fetch:
