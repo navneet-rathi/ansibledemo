@@ -18,7 +18,7 @@
 
 - name: Print to console
   debug:
-  msg: "{{command_output.stdout}}"
+    msg: "{{command_output.stdout}}"
 
 #- name: Fetch all details in files
 #  fetch:
