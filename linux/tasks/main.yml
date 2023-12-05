@@ -1,2 +1,20 @@
 ---
 # tasks file for linuxdemo
+- name: copy the shell file to genrate report on target servers
+  ansible.builtin.copy:
+    src: report.sh
+    dest: /tmp/report.sh
+    owner: root
+    group: root
+    mode: u+rwx,g-rx,o-rx
+
+- name: Execute the Shell script to Genrate report
+  shell: "sh /tmp/report.sh >> /tmp/report.txt"
+
+- name: Fetch all details in files
+  fetch:
+    src: /tmp/report.txt 
+    dest: files/ 
+    fail_on_missing: True 
+    validate_checksum: True 
+    flat: true 
