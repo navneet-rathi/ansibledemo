@@ -1,0 +1,30 @@
+---
+# tasks file for win
+- name: Gather details about environment we're running on
+  setup:
+  register: remote_facts
+
+- name: Install Visual C thingy with list of arguments instead of a string
+  ansible.windows.win_package:
+    path: http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
+    product_id: '{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}'
+    arguments:
+    - /install
+    - /passive
+    - /norestart
+
+- name: win_reboot
+  win_reboot:
+  #when: remote_facts.ansible_facts.ansible_user_id != "vagrant"
+
+### Vagrant Style win_reboot ###
+# The win_reboot module hangs when targeting Vagrant so we restart differently.
+
+- name: Reboot the server
+  win_shell: Restart-Computer -Force
+  #when: remote_facts.ansible_facts.ansible_user_id == "vagrant"
+
+- name: Wait 5 mins for server to reboot
+  pause:
+    seconds: 300
+  #when: remote_facts.ansible_facts.ansible_user_id == "vagrant"
