@@ -9,7 +9,7 @@
     mode: u+rwx,g-rx,o-rx
 
 - name: Execute the Shell script to Genrate report
-  shell: "sh report.sh"
+  shell: "sh /tmp/report.sh"
 
 
 - name: Display /tmp/report.txt contents
