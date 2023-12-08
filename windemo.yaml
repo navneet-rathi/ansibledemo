@@ -1,5 +1,4 @@
 - hosts: all
-  become: yes
   strategy: free
   gather_facts: true
   roles:

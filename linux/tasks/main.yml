@@ -2,14 +2,14 @@
 # tasks file for linuxdemo
 - name: copy the shell file to genrate report on target servers
   ansible.builtin.copy:
-    src: report.sh
+    src: fsreport.sh
     dest: /tmp/report.sh
     owner: root
     group: root
     mode: u+rwx,g-rx,o-rx
 
 - name: Execute the Shell script to Genrate report
-  shell: "wget https://raw.github.com/tdulcet/Linux-System-Information/master/info.sh -qO - | bash -s >> /tmp/report.txt"
+  shell: "sh /tmp/report.sh"
 
 
 - name: Display /tmp/report.txt contents

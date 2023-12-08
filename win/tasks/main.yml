@@ -12,19 +12,13 @@
     - /install
     - /passive
     - /norestart
+    
+# One way to ensure the system is reliable, is to set WinRM to a delayed startup
+- name: Ensure WinRM starts when the system has settled and is ready to work reliably
+  ansible.windows.win_service:
+    name: WinRM
+    start_mode: delayed
 
 - name: win_reboot
   win_reboot:
-  #when: remote_facts.ansible_facts.ansible_user_id != "vagrant"
-
-### Vagrant Style win_reboot ###
-# The win_reboot module hangs when targeting Vagrant so we restart differently.
-
-- name: Reboot the server
-  win_shell: Restart-Computer -Force
-  #when: remote_facts.ansible_facts.ansible_user_id == "vagrant"
-
-- name: Wait 5 mins for server to reboot
-  pause:
-    seconds: 300
-  #when: remote_facts.ansible_facts.ansible_user_id == "vagrant"
+    reboot_timeout: 720
