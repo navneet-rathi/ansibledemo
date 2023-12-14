@@ -27,7 +27,7 @@
 
 - name: install curl packge
   yum:
-    name: /tmp/curl-7.29.0-59.el7_9.2.x86_64.rpm
+    name: /tmp/curl-7.29.0-46.el7.x86_64.rpm
     state: present
 
 - name : check if curl is present or not
