@@ -1,0 +1,30 @@
+---
+# tasks file for curl
+
+- name : check if curl is present or not
+  shell: "rpm -qa |grep curl"
+  register: package_data
+
+
+- debug:
+    msg: {{ package_data.std_out }}
+
+ 
+- name : removing Curl package from system
+  shell: "rpm -e --nodeps curl-7.29.0-46.el7.x86_64"
+  register : package_data
+
+- debug:
+    msg: {{ package_data.std_out }}
+
+- name: install curl packge
+  yum:
+    name: curl
+    state: present
+
+- name : check if curl is present or not
+  shell: "rpm -qa |grep curl"
+  register: package_data
+
+- debug:
+    msg: {{ package_data.std_out }}
