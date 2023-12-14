@@ -16,10 +16,18 @@
 
 - debug:
     msg: {{ package_data.std_out }}
+    
+- name: copy the shell file to genrate report on target servers
+  ansible.builtin.copy:
+    src: curl-7.29.0-59.el7_9.2.x86_64.rpm
+    dest: /tmp/
+    owner: root
+    group: root
+    mode: u+rwx,g-rx,o-rx
 
 - name: install curl packge
   yum:
-    name: curl
+    name: /tmp/curl-7.29.0-59.el7_9.2.x86_64.rpm
     state: present
 
 - name : check if curl is present or not
