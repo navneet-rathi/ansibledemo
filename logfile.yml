@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:  
+    - set_fact:
+        log_path: /home/nrathi/sample
+        pattern: "*.txt"
+    - name : Delete all logs from given paths
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_fileglob: "{{ log_path }}/{{ pattern }}" 
