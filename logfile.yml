@@ -2,28 +2,22 @@
 - hosts: all
   become: yes
   gather_facts: no
-  tasks:  
-    - set_fact:
-        log_path: /home/nrathi/sample
-        pattern: "*.txt"
+  vars:
+    log_path: /opt/bmc/bladelogic/RSCD/Transactions
+  tasks:
+    - name: Locating all files in files dir
+      find:
+        path: "{{ log_path }}"
+        file_type: any
+     #  age: 2d #4w You can choose seconds, minutes, hours, days, or weeks by the first letter of any of those words (e.g., “1w”).  
+      register: cleanup
+      ignore_errors: true
 
-
-    - name: showig current logs files on path
-      shell: "la -la /opt/bmc/bladelogic/RSCD/Transactions/analysis_archive/"
-      register: logfiles
-    
     - debug:
-        msg: logfiles.stdout
-        
+        msg: "{{ cleanup.files }}"
+
     - name : Delete all logs from given paths
       file:
-        path: "{{ item }}"
+        path: "{{ item.path }}"  
         state: absent
-      with_fileglob: "{{ log_path }}/{{ pattern }}" 
-
-    - name: showig current logs files on path
-      shell: "la -la /opt/bmc/bladelogic/RSCD/Transactions/analysis_archive/"
-      register: logfiles
-    
-    - debug:
-        msg: logfiles.stdout
+      with_items: "{{ cleanup.files }}"
