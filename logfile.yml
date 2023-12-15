@@ -3,7 +3,7 @@
   become: yes
   gather_facts: no
   vars:
-    log_path: /opt/bmc/bladelogic/RSCD/Transactions
+    log_path: /opt/bmc/bladelogic/RSCD/Transactions/analysis_archive
   tasks:
     - name: Locating all files in files dir
       find:
