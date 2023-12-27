@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:  
+    - name: calling a job name to invoke from system
+      shell: wget https://google.com
+      register: url_output
+    
+    - name: print debug output
+      debug: 
+        msg: "{{ url_output }}"    
+      
+    - name: print the output of some command
+      shell: hostname
+      register: output_hostname
+
+    - name: print the debug output
+      debug:  
+        msg: "{{ output_hostname }}"  
+   
+    - name: calling url of remote site for testing
+      shell: "wget {{ siteurl }}"
+      register: url_output
+
+    - name: print debug output
+      debug:
+        msg: "{{ url_output }}"  
