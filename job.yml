@@ -25,4 +25,15 @@
 
     - name: print debug output
       debug:
-        msg: "{{ url_output }}"  
+        msg: "{{ url_output }}"
+
+    - name: Are you want to mark the job success
+      pause:
+        prompt: "Are you sure you want to mark job success? (yes/no)"
+      register: confirm_delete
+      when: "{{ url_output.rc }} != 0" 
+
+    - name: mark job success
+      shell: "exit 0"
+      when: "{{ url_output.rc }} != 0"
+      
