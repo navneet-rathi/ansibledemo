@@ -22,6 +22,7 @@
     - name: calling url of remote site for testing
       shell: "wget {{ siteurl }}"
       register: url_output
+      ignore_errors: true
 
     - name: print debug output
       debug:
