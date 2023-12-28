@@ -28,13 +28,19 @@
       debug:
         msg: "{{ url_output }}"
 
-    - name: Are you want to mark the job success
-      pause:
-        prompt: "Are you sure you want to mark job success? (yes/no)"
-      register: confirm_delete
-      when: "{{ url_output.rc }} != 0" 
 
-    - name: mark job success
+   - name: Wait until the string "approved" is in the file /tmp/job before continuing
+     wait_for:
+       path: /tmp/job
+       search_regex: approved    
+
+#    - name: Are you want to mark the job success
+#      pause:
+#        prompt: "Are you sure you want to mark job success? (yes/no)"
+#      register: confirm_delete
+#      when: "{{ url_output.rc }} != 0" 
+
+    - name: mark job success when mark ok workflow is ran 
       shell: "exit 0"
       when: "{{ url_output.rc }} != 0"
       
