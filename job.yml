@@ -29,10 +29,10 @@
         msg: "{{ url_output }}"
 
 
-   - name: Wait until the string "approved" is in the file /tmp/job before continuing
-     wait_for:
-       path: /tmp/job
-       search_regex: approved    
+    - name: Wait until the string "approved" is in the file /tmp/job before continuing
+      wait_for:
+        path: /tmp/job
+        search_regex: approved    
 
 #    - name: Are you want to mark the job success
 #      pause:
