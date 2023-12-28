@@ -13,9 +13,9 @@
 
     - name: Pause for 10 seconds for other job to read the approval
       ansible.builtin.pause:
-        seconds: 10
+        seconds: 2
 
     - name: Remove approval file (delete file) as after wait of 10 seconds
       ansible.builtin.file:
-        path: /etc/job
+        path: /tmp/job
         state: absent       
