@@ -11,11 +11,11 @@
       debug: 
         msg: "{{ approvedoutput }}"    
 
-    - name: Pause for 5 minutes to build app cache
+    - name: Pause for 10 seconds for other job to read the approval
       ansible.builtin.pause:
-        minutes: 1
+        seconds: 10
 
-    - name: Remove approval file (delete file) as after wait of 1 min
+    - name: Remove approval file (delete file) as after wait of 10 seconds
       ansible.builtin.file:
         path: /etc/job
         state: absent       
