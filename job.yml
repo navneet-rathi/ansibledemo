@@ -27,7 +27,10 @@
     - name: print debug output
       debug:
         msg: "{{ url_output }}"
-
+ 
+    - name : print jobid and name
+      debug:
+        msg: "{{job.id}} {{job.name}}"
 
     - name: Wait until the string "approved" is in the file /tmp/job before continuing or 1 min
       wait_for:
