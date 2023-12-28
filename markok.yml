@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:  
+    - name: put approved in the /tmp/job file to mark job as success 
+      shell: "echo approved >> /tmp/job" 
+      register: approvedoutput
+    
+    - name: print debug output
+      debug: 
+        msg: "{{ approvedoutput }}"    
