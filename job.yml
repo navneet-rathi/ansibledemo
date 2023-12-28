@@ -43,7 +43,7 @@
         to:
         - nrathi@redhat.com
         subject: Email By Ansible Automation Platform - about Failing job
-        body: job has failing https://192.168.1.22/#/jobs/playbook/{{ awx_job_id }}/output {{ awx_job_template_name }} Please run the approval job it will wait for it\n url for approbal job is https://192.168.1.22/#/templates/job_template/19/details.
+        body: job is failing https://192.168.1.22/#/jobs/playbook/{{ awx_job_id }}/output,job name is {{ awx_job_template_name }}. Please run the approval job it will wait for it, Url for approval job is https://192.168.1.22/#/templates/job_template/19/details.
       when: "{{ url_output.rc }} != 0"  
             
     - name: Wait until the string "approved" is in the file /tmp/job before continuing or 1 min
