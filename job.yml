@@ -29,11 +29,11 @@
         msg: "{{ url_output }}"
 
 
-    - name: Wait until the string "approved" is in the file /tmp/job before continuing
+    - name: Wait until the string "approved" is in the file /tmp/job before continuing or 1 min
       wait_for:
         path: /tmp/job
         search_regex: approved
-        timeout: 3600
+        timeout: 60
         
     - name: Check if job file is present   
       stat:
