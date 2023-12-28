@@ -32,16 +32,16 @@
       debug:
         msg: "{{ awx_job_id }} {{ awx_job_template_name }}"
 
-    - name: Sending an email using Ansible
-      community.general.mail:
-        host: smtp.gmail.com
-        port: 587
-        username: dmeonavneet@gmail.com
-        password: "rbfqhoincpyouxqk"
-        to:
-        - nrathi@redhat.com
-        subject: Email By Ansible Automation Platform - about Failing job
-        body: job has failing {{ awx_job_id }} {{ awx_job_template_name }} Please run the approval job it will wait for it
+ #   - name: Sending an email using Ansible
+ #     community.general.mail:
+ #       host: smtp.gmail.com
+ #       port: 587
+ #       username: dmeonavneet@gmail.com
+ #       password: "rbfqhoincpyouxqk"
+ #       to:
+ #       - nrathi@redhat.com
+ #       subject: Email By Ansible Automation Platform - about Failing job
+ #       body: job has failing {{ awx_job_id }} {{ awx_job_template_name }} Please run the approval job it will wait for it
             
     - name: Wait until the string "approved" is in the file /tmp/job before continuing or 1 min
       wait_for:
