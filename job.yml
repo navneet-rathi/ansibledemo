@@ -32,15 +32,20 @@
     - name: Wait until the string "approved" is in the file /tmp/job before continuing
       wait_for:
         path: /tmp/job
-        search_regex: approved    
+        search_regex: approved
+        timeout: 3600
+        
+    - name: Check if job file is present   
+      stat:
+        path: /tmp/job
+      register: register_name
 
-#    - name: Are you want to mark the job success
-#      pause:
-#        prompt: "Are you sure you want to mark job success? (yes/no)"
-#      register: confirm_delete
-#      when: "{{ url_output.rc }} != 0" 
+    - name: Print Error at last if approval is not given
+      debug:
+        msg: "{{ url_output }}"
+      when: not register_name.stat.exists 
 
-    - name: mark job success when mark ok workflow is ran 
-      shell: "exit 0"
-      when: "{{ url_output.rc }} != 0"
+#    - name: mark job success when mark ok workflow is ran 
+#      shell: "exit 0"
+#      when: "{{ url_output.rc }} != 0"
       
