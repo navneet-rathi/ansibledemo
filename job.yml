@@ -50,7 +50,7 @@
       wait_for:
         path: /tmp/job
         search_regex: approved
-        timeout: 60
+        timeout: 86400
       when: "{{ url_output.rc }} != 0"
       
     - name: Check if job file is present   
