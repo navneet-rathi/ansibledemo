@@ -31,6 +31,7 @@
     - name : print jobid and name
       debug:
         msg: "{{ awx_job_id }} {{ awx_job_template_name }}"
+      when: "{{ url_output.rc }} != 0"  
 
     - name: Sending an email using Ansible
       community.general.mail:
@@ -42,19 +43,22 @@
         to:
         - nrathi@redhat.com
         subject: Email By Ansible Automation Platform - about Failing job
-        body: job has failing https://192.168.1.22/#/jobs/playbook/{{ awx_job_id }}/output {{ awx_job_template_name }} Please run the approval job it will wait for it\n url for approbal job is https://192.168.1.22/#/templates/job_template/19/details
+        body: job has failing https://192.168.1.22/#/jobs/playbook/{{ awx_job_id }}/output {{ awx_job_template_name }} Please run the approval job it will wait for it\n url for approbal job is https://192.168.1.22/#/templates/job_template/19/details.
+      when: "{{ url_output.rc }} != 0"  
             
     - name: Wait until the string "approved" is in the file /tmp/job before continuing or 1 min
       wait_for:
         path: /tmp/job
         search_regex: approved
 #        timeout: 60
-        
+      when: "{{ url_output.rc }} != 0"
+      
     - name: Check if job file is present   
       stat:
         path: /tmp/job
       register: register_name
-
+      when: "{{ url_output.rc }} != 0"
+      
     - name: Print Error at last if approval is not given
       debug:
         msg: "{{ url_output }}"
