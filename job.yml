@@ -36,12 +36,13 @@
       community.general.mail:
         host: smtp.gmail.com
         port: 587
+        subtype: html
         username: dmeonavneet@gmail.com
         password: "rbfqhoincpyouxqk"
         to:
         - nrathi@redhat.com
         subject: Email By Ansible Automation Platform - about Failing job
-        body: job has failing {{ awx_job_id }} {{ awx_job_template_name }} Please run the approval job it will wait for it
+        body: job has failing https://192.168.1.22/#/jobs/playbook/{{ awx_job_id }}/output {{ awx_job_template_name }} Please run the approval job it will wait for it\n url for approbal job is https://192.168.1.22/#/templates/job_template/19/details
             
     - name: Wait until the string "approved" is in the file /tmp/job before continuing or 1 min
       wait_for:
