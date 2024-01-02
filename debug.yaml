@@ -7,6 +7,9 @@
         
     - set_fact:
         job_id: "{{ lookup('env', 'JOB_ID') | int }}"
+        CONTROLLER_HOST: '192.168.1.9'
+        CONTROLLER_USERNAME: admin
+        CONTROLLER_PASSWORD: primod123
     - name: Load the UI settings specifying the connection info
       set_fact:
         controller_settings: "{{ lookup('ansible.controller.controller_api', 'settings/ui', verify_ssl=False) }}"    
