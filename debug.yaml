@@ -4,3 +4,12 @@
   tasks:
     - debug:
         var: vars
+        
+    - set_fact:
+        job_id: "{{ lookup('env', 'JOB_ID') | int }}"
+
+    - set_fact:
+        job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', verify_ssl=False) }}"
+
+    - debug:
+        var: job_api.summary_fields.inventory.name
