@@ -1,0 +1,6 @@
+---
+- name: Debug AAP
+  hosts: all
+  tasks:
+    - debug:
+        var: vars
