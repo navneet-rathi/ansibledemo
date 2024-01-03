@@ -18,4 +18,4 @@
                                   username='admin', password='primod123', verify_ssl=False) }}"
 
     - debug:
-        var: job_api.summary_fields.inventory.name
+        var: job_api
