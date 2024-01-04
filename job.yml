@@ -21,6 +21,8 @@
    
     - name: calling url of remote site for testing
       shell: "wget {{ siteurl }}"
+      retries: 5
+      delay: 10
       register: url_output
       ignore_errors: true
 
