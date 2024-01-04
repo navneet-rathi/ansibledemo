@@ -50,6 +50,7 @@
       wait_for:
         path: /tmp/job
         search_regex: approved
+        timeout: 10
 #        timeout: 86400
       when: "{{ url_output.rc }} != 0"
       
