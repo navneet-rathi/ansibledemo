@@ -1,0 +1,21 @@
+---
+- name: Debug AAP
+  hosts: all
+  tasks:
+   # - debug:
+    #    var: vars
+        
+    - set_fact:
+        job_id: "{{ lookup('env', 'JOB_ID') | int }}"
+   
+    #- name: Load the UI settings specifying the connection info
+    #  set_fact:
+    #    controller_settings: "{{ lookup('awx.awx.controller_api', 'settings/ui', host='192.168.1.9',
+    #                              username='admin', password='primod123', verify_ssl=False) }}"
+
+    - set_fact:
+        job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='192.168.1.9',
+                                  username='admin', password='primod123', verify_ssl=False) }}"
+
+    - debug:
+        var: job_api
