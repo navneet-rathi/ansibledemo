@@ -21,3 +21,7 @@
         path: "{{ item.path }}"  
         state: absent
       with_items: "{{ cleanup.files }}"
+
+    - name: Reboot the machine (Wait for 5 min)
+      reboot:
+        reboot_timeout: 300  
