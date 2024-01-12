@@ -19,3 +19,18 @@
 
     - debug:
         var: job_api
+        
+---
+- hosts: localhost
+  become: yes
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: disply pass
+      ansible.builtin.debug:
+        msg: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=secret/data/dev:pass token=hvs.IZdiugpUhrsOuEu5alL3Qv0z url=http://192.168.1.13:8200') }}"
+      register: secret_data
+
+
+    - debug: 
+        msg: "{{ secret_data.msg }}"
