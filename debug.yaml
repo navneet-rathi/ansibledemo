@@ -20,7 +20,6 @@
     - debug:
         var: job_api
         
----
 - hosts: localhost
   become: yes
   gather_facts: no
