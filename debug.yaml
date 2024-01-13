@@ -14,7 +14,7 @@
     #                              username='admin', password='primod123', verify_ssl=False) }}"
 
     - set_fact:
-        job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='192.168.1.9',
+        job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='aap1.example.com',
                                   username='admin', password='primod123', verify_ssl=False) }}"
 
     - debug:
