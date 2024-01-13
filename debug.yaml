@@ -17,7 +17,7 @@
         job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='aap1.example.com',
                                   username='admin', password='primod123', verify_ssl=False) }}"
     - name: display the hosts
-      shell: 'cat /runner/inventory/hosts'
+      local_action: ansible.builtin.shell cat /runner/inventory/hosts
       register: inv
 
     - debug:
