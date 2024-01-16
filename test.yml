@@ -1,0 +1,8 @@
+---
+- name: Arcon Ansible Demo setup
+  hosts: localhost
+ # ansible_connection: local
+  vars:
+    pwd: "{{ lookup('arconplugin','/runner/inventory/hosts',wantlist=False) }}"
+  tasks:
+    - debug: msg="{{ pwd }}"
