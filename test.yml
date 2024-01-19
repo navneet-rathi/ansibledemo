@@ -6,6 +6,9 @@
     pwd: "{{ lookup('arconplugin','/runner/inventory/hosts@hosts',wantlist=False) }}"
   tasks:
     - set_fact:
+        job_id: "{{ lookup('env', 'JOB_ID') | int }}"
+        
+    - set_fact:
         job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='aap1.example.com',
                                   username='admin', password='primod123', verify_ssl=False) }}"
     - name: display the hosts
