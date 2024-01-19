@@ -3,7 +3,7 @@
   hosts: localhost
  # ansible_connection: local
   vars:
-    pwd: "{{ lookup('arconplugin','/runner/inventory/hosts@hosts',wantlist=False) }}"
+    pwd: "{{ lookup('arconplugin','/runner/inventory/hosts@web',wantlist=False) }}"
   tasks:
     - set_fact:
         job_id: "{{ lookup('env', 'JOB_ID') | int }}"
