@@ -3,6 +3,6 @@
   hosts: localhost
  # ansible_connection: local
   vars:
-    pwd: "{{ lookup('arconplugin','/runner/inventory/hosts',wantlist=False) }}"
+    pwd: "{{ lookup('arconplugin','/runner/inventory/hosts@hosts',wantlist=False) }}"
   tasks:
     - debug: msg="{{ pwd }}"
