@@ -1,0 +1,29 @@
+---
+- name: Debug AAP
+  hosts: localhost
+  tasks:
+    - name: Building the required inventory from ansible inventory
+      ansible.builtin.template:
+        src: inventory.j2
+        dest: /runner/inventory/inventory
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+
+- name: Arcon Ansible Demo setup
+  hosts: localhost
+ # ansible_connection: local
+  vars:
+    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@web',wantlist=False) }}"
+  tasks:
+
+    - name: display the hosts
+      local_action: ansible.builtin.shell cat /runner/inventory/hosts
+      register: inv
+
+    - debug:
+        msg: "{{ inv }}"
+              
+    - debug: 
+        var: pwd
+    
