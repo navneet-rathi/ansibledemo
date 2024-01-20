@@ -1,0 +1,22 @@
+---
+- name: building inventory
+  hosts: localhost
+  tasks:
+    - name: Give insecure permissions to an existing file
+      ansible.builtin.file:
+        path: "{{ item }}"
+        owner: root
+        group: root
+        mode: '1777'
+      with_items:
+        - /runner/inventory/host
+        - /runner/project/json2ini.py
+
+    - shell: "python /runner/inventory/host | /runner/project/json2ini.py > /runner/inventory/inventory "
+
+- name: Arcon Ansible Demo setup
+  hosts: localhost
+  vars:
+    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory1@web',wantlist=True) }}"
+  tasks:
+    - debug: msg="{{ pwd }}"
