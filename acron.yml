@@ -12,7 +12,7 @@
         - /runner/inventory/hosts
         - /runner/project/json2ini.py
 
-    - shell: "python /runner/inventory/host | /runner/project/json2ini.py > /runner/inventory/inventory "
+    - shell: "python /runner/inventory/hosts | /runner/project/json2ini.py > /runner/inventory/inventory "
 
 - name: Arcon Ansible Demo setup
   hosts: localhost
