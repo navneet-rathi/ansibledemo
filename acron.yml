@@ -9,7 +9,7 @@
         group: root
         mode: '1777'
       with_items:
-        - /runner/inventory/host
+        - /runner/inventory/hosts
         - /runner/project/json2ini.py
 
     - shell: "python /runner/inventory/host | /runner/project/json2ini.py > /runner/inventory/inventory "
