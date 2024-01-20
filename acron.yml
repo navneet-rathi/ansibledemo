@@ -17,6 +17,6 @@
 - name: Arcon Ansible Demo setup
   hosts: localhost
   vars:
-    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory1@web',wantlist=True) }}"
+    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@web',wantlist=True) }}"
   tasks:
     - debug: msg="{{ pwd }}"
