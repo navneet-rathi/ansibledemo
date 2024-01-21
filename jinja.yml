@@ -1,0 +1,18 @@
+---
+- name: building solution using jinja2
+  hosts: localhost
+  tasks:
+    - name: Building a jinja Template
+      ansible.builtin.template:
+        src: inventory.j2
+        dest: /runner/inventory/inventory
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+        
+- name: Arcon Ansible Demo setup
+  hosts: localhost
+  vars:
+    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@web',wantlist=True) }}"
+  tasks:
+    - debug: msg="{{ pwd }}"        
