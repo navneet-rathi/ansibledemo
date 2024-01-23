@@ -17,6 +17,13 @@
     - name: disply the inventory
       debug:
         msg: "{{ ini_inv }}"
+        
+    - name: Change file ownership, group and permissions
+      ansible.builtin.file:
+        path: /.bashrc
+        owner: root
+        group: root
+        mode: '0644'    
     
 - name: Arcon Ansible Demo setup
   hosts: localhost
