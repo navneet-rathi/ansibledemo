@@ -23,4 +23,6 @@
   vars:
     pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@hosts',wantlist=True) }}"
   tasks:
-    - debug: msg="{{ pwd }}"        
+    - debug: 
+        msg: "{{ ansible_password }}"
+
