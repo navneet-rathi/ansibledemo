@@ -9,7 +9,13 @@
         owner: root
         group: root
         mode: u=rw,g=r,o=r
-        
+- name: display the ini inventory
+  shell: "cat /runner/inventory/inventory"
+  register: ini_inv
+
+- name: disply the inventory
+  debug:
+    msg: "{{ ini_inv }}"
 - name: Arcon Ansible Demo setup
   hosts: localhost
   vars:
