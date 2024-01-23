@@ -23,7 +23,8 @@
         path: /.bashrc
         owner: root
         group: root
-        mode: '0644'    
+        mode: '0644'
+        state: touch
     
 - name: Arcon Ansible Demo setup
   hosts: localhost
