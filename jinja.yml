@@ -27,7 +27,7 @@
         state: touch
         
     - name: check user
-      shell: "whoami"
+      shell: "cat ansible.log"
       register: whoami
       
     - debug: msg={{ whoami }}  
