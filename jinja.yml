@@ -25,7 +25,12 @@
         group: root
         mode: '0644'
         state: touch
-    
+        
+    - name: check user
+      shell: "whoami"
+      register: whoami
+      
+    - debug: msg={{ whoami }}  
 - name: Arcon Ansible Demo setup
   hosts: localhost
   vars:
@@ -33,6 +38,7 @@
   tasks:
     - debug:
         msg: "{{ pwd }}"
+        
         
     - name: Set default value to undef(), if the variable is not defined
       ansible.builtin.debug:
