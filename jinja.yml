@@ -16,6 +16,7 @@
 - name: disply the inventory
   debug:
     msg: "{{ ini_inv }}"
+    
 - name: Arcon Ansible Demo setup
   hosts: localhost
   vars:
