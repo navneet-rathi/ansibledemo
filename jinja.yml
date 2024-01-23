@@ -9,6 +9,7 @@
         owner: root
         group: root
         mode: u=rw,g=r,o=r
+        
 - name: display the ini inventory
   shell: "cat /runner/inventory/inventory"
   register: ini_inv
