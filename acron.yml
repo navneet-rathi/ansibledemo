@@ -14,6 +14,12 @@
 
     - shell: "python /runner/inventory/hosts | /runner/project/json2ini.py > /runner/inventory/inventory "
 
+    - shell: "cat /runner/inventory/inventory"
+      register: iniinv
+
+    - debug:
+        msg: "{{ iniinv }}" 
+
 - name: Arcon Ansible Demo setup
   hosts: localhost
   vars:
