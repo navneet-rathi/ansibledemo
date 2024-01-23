@@ -1,4 +1,4 @@
-[web]
+[hosts]
 {%for i in groups['all']%}
-{{ hostvars[i]['inventory_hostname'] }}  ansible_user={{ hostvars[i]['ansible_user'] }} service_type=7 ansible_password=
+{{ hostvars[i]['inventory_hostname'] }}  ansible_user={{ hostvars[i]['ansible_user'] }} service_type=7 ansible_password='{{lookup("env","ANS_PASSWORD")}}'
 {% endfor %}   
