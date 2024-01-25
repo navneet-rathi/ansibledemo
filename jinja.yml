@@ -9,38 +9,22 @@
         owner: root
         group: root
         mode: u=rw,g=r,o=r
-        
-    - name: display the ini inventory
-      shell: "cat /runner/inventory/inventory"
-      register: ini_inv
-
-    - name: disply the inventory
+              
+    - name: will lookup in this to set tha pass in variable   
       debug:
-        msg: "{{ ini_inv }}"
-        
-    - name: Change file ownership, group and permissions
-      ansible.builtin.file:
-        path: /.bashrc
-        owner: root
-        group: root
-        mode: '0644'
-        state: touch
-        
-    - name: check user
-      shell: "cat /root/ansible.log"
-      register: whoami
-      
-    - debug: msg={{ whoami }}  
-- name: Arcon Ansible Demo setup
-  hosts: localhost
-  vars:
-    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@hosts',wantlist=True) }}"
-  tasks:
-    - debug:
         msg: "{{ pwd }}"
-        
-        
-    - name: Set default value to undef(), if the variable is not defined
-      ansible.builtin.debug:
-        msg: "{{ lookup('ansible.builtin.env', '$ANS_PASSWORD', default=undef()) }} is the user."
+      vars:
+        pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@hosts',wantlist=True) }}"
+    
+    
+          
+- name: Arcon Ansible Demo setup
+  hosts: all
+#  vars:
+#    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@hosts',wantlist=True) }}"
+  tasks:
+    - shell: "cat /etc/redhat-release"
+      register: release_out
 
+    - debug:
+        msg: "{{ release_out }}"
