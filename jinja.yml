@@ -20,8 +20,8 @@
           
 - name: Arcon Ansible Demo setup
   hosts: all
-#  vars:
-#    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@hosts',wantlist=True) }}"
+  vars:
+    pwd: "{{ lookup('arconplugin','/runner/inventory/inventory@hosts',wantlist=True) }}"
   tasks:
     - shell: "cat /etc/redhat-release"
       register: release_out
