@@ -1,0 +1,22 @@
+---
+- name: building inventory
+  hosts: all
+  tasks:
+    - name: show this is working
+      shell: "cat /etc/redhat-release"
+      register: ifg
+
+    - name: debugging the output
+      debug:
+        msg: "{{ ifg }}"
+
+#    - debug:
+#        msg: "{{ lookup('arconplugin','path=/16.170.226.254/7/testa',wantlist=True) }}"
+    #- shell: "python /root/in.py | /root/json2ini.py > /root/inventory1 "
+
+#- name: Arcon Ansible Demo setup
+#  hosts: localhost
+#  vars:
+#    pwd: "{{ lookup('arconplugin','host=/{{inventory_hostname}}/testa',wantlist=True) }}"
+#  tasks:
+#    - debug: msg="{{ pwd }}"
