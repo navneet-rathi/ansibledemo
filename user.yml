@@ -1,0 +1,31 @@
+---
+- name: Create groups and users on linux server
+  hosts: all
+  gather_facts: no
+  vars:
+    myuser: "nrathi"
+    mypassword: "password@123"
+    mygroup: "sysadmins"
+  tasks:
+    - name: Add group "{{ mygroup }}" to remote server
+      group:
+        name: "{{ mygroup }}"
+        gid: 2010
+        state: present
+
+    - name: Allow the bob user to run any commands as alice with sudo -u alice
+      community.general.sudoers:
+        name: "{{mygroup}}-sudoers"
+        state: present
+        group: "{{ mygroup }}"
+        commands: ALL    
+
+    - name: Add user "{{ myuser }}" to remote server with sudo access
+      user:
+        name: "{{ myuser }}"
+        comment: "Privileged User"
+        uid: 2001
+        group: "{{ mygroup }}"
+        shell: /bin/bash
+        password: "{{ mypassword | password_hash('sha512') }}"
+
