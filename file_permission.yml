@@ -1,0 +1,13 @@
+...
+---
+- name: Create and set file Permissions
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Change file ownership, group and permissions
+      ansible.builtin.file:
+        path: /etc/foo.conf
+        owner: root
+        group: root
+        mode: '0644'
+...        
