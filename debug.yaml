@@ -16,9 +16,9 @@
       ansible.builtin.shell: ifconfig
       register: ifg
 
-     - name: Show debug output
-       ansible.builtin.debug:
-         msg: "{{ifg.stdout}}"
+    - name: Show debug output
+      ansible.builtin.debug:
+        msg: "{{ifg.stdout}}"
 
  #   - name: display the hosts
  #     local_action: ansible.builtin.shell cat /runner/inventory/hosts
