@@ -8,29 +8,33 @@
     - set_fact:
         job_id: "{{ lookup('env', 'JOB_ID') | int }}"
    
-    #- name: Load the UI settings specifying the connection info
-    #  set_fact:
-    #    controller_settings: "{{ lookup('awx.awx.controller_api', 'settings/ui', host='192.168.1.9',
-    #                              username='admin', password='primod123', verify_ssl=False) }}"
-
     - set_fact:
         job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='aap1.example.com',
                                   username='admin', password='primod123', verify_ssl=False) }}"
-    - name: display the hosts
-      local_action: ansible.builtin.shell cat /runner/inventory/hosts
-      register: inv
+                                  
+    - name: Running Hostname command to confirm and no funny bussness
+      ansible.builtin.shell: ifconfig
+      register: ifg
 
-    - debug:
-        msg: "{{ inv }}"
+     - name: Show debug output
+       ansible.builtin.debug:
+         msg: "{{ifg.stdout}}"
+
+ #   - name: display the hosts
+ #     local_action: ansible.builtin.shell cat /runner/inventory/hosts
+ #     register: inv
+
+ #   - debug:
+ #       msg: "{{ inv }}"
         
-    - debug:
-        var: job_api
+ #   - debug:
+ #       var: job_api
         
-- name: Arcon Ansible Demo setup
-  hosts: localhost
- # ansible_connection: local
-  vars:
-    pwd: "{{ lookup('arconplugin','/runner/inventory/hosts',wantlist=False) }}"
-  tasks:
-    - debug: msg="{{ pwd }}"
+#- name: Arcon Ansible Demo setup
+#  hosts: localhost
+# # ansible_connection: local
+#  vars:
+#    pwd: "{{ lookup('arconplugin','/runner/inventory/hosts',wantlist=False) }}"
+#  tasks:
+#    - debug: msg="{{ pwd }}"
 
