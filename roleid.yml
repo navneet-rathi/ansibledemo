@@ -27,7 +27,7 @@
     - set_fact:
        # host: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:host') }} | string"
        # user: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:user') }} | string"
-        pass: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:pass') }} | string"
+        pass : "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:pass') }} | string"
         job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='192.168.1.11', username='admin', password='primod123',verify_ssl=False) }}"
 
     - debug:
