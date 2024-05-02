@@ -2,10 +2,12 @@
 - name: Create and delete user
   hosts: all
   vars:
-    - username: navneet
-    - password: navneet22
-    - policies: acl_sa_ansible
-    - action: 
+    username: navneet
+    password: navneet22
+    policies: acl_sa_ansible
+    action:
+  environment:
+    VAULT_ADDR: http://192.168.1.11:8200
   tasks:
     - name: Enable Engine userpass hashicorp vault
       shell: vault auth enable userpass
