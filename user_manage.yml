@@ -16,9 +16,9 @@
     - name: Create user set pass and attach policy
       shell: vault write auth/userpass/users/"{{ user |default('navneet', true) }}" password="{{ pass|default('navneet22',true) }}" policies="{{ policies|default('acl_sa_ansible',true) }}"
       when: 
-        - "{{ action }} is 'create'"
+        - "{{ action }} == create"
 
     - name: delete user from hashicorpvault
       shell: vault delete auth/userpass/users/{{ user }}
       when: 
-        - "{{ action }} is 'delete'"
+        - "{{ action }} == 'delete'"
