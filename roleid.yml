@@ -1,7 +1,7 @@
 ---
 - name: Create secretid and retrive roleid
-  hosts: localhost
-  connection: local
+  hosts: all
+ # connection: local
   tasks:
 #    - name: Retrieve an approle role ID from Vault via the remote host
 #      community.hashi_vault.vault_read:
