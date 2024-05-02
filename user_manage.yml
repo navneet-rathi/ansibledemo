@@ -11,6 +11,7 @@
   tasks:
     - name: Enable Engine userpass hashicorp vault
       shell: vault auth enable userpass
+      ignore_errors: true
       
     - name: Create user set pass and attach policy
       shell: vault write auth/userpass/users/"{{ user |default('navneet', true) }}" password="{{ pass|default('navneet22',true) }}" policies="{{ policies|default('acl_sa_ansible',true) }}"
