@@ -25,10 +25,10 @@
         job_id: "{{ lookup('env', 'JOB_ID') | int }}"
 
     - set_fact:
-        host: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:host') }} | string"
-        user: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:user') }} | string"
+       # host: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:host') }} | string"
+       # user: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:user') }} | string"
         pass: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:pass') }} | string"
-        job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='{{ host }}', username='{{ username }}', password='{{ pass }}',verify_ssl=False) }}"
+        job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='192.168.1.11', username='admin', password='{{ pass }}',verify_ssl=False) }}"
 
     - debug:
         var: job_api.summary_fields.inventory.name
