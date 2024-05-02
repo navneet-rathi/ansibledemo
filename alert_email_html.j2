@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Password Change</title>
+
+</head>
+
+<body>
+
+    <p>Dear Team,</p>
+
+    <p>This is an automated alert to inform you:</p>
+    <p>Passwords are updated on below servers 
+    <ul>
+     {% for host in groups['all'] %}
+        <li>{{ host }}</li>
+     {% endfor %}
+    </ul>
+
+    <p>Best regards,<br/>{{ user_email }}</p>
+
+</body>
+
+</html>

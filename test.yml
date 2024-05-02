@@ -1,0 +1,28 @@
+---
+- name: Arcon Ansible Demo setup
+  hosts: localhost
+ # ansible_connection: local
+  vars:
+    pwd: "{{ lookup('arconplugin','/runner/inventory/hosts@web',wantlist=False) }}"
+  tasks:
+    - set_fact:
+        job_id: "{{ lookup('env', 'JOB_ID') | int }}"
+        
+    - set_fact:
+        job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='aap1.example.com',
+                                  username='admin', password='primod123', verify_ssl=False) }}"
+    - name: display the hosts
+      local_action: ansible.builtin.shell cat /runner/inventory/hosts
+      register: inv
+
+    - debug:
+        msg: "{{ inv }}"
+        
+    - debug:
+        var: job_api
+        
+    - debug: msg="{{ pwd }}"
+    
+    - name: Pause for 5 minutes to build app cache
+      ansible.builtin.pause:
+        minutes: 5
