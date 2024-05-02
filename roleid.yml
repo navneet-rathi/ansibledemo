@@ -25,9 +25,9 @@
         job_id: "{{ lookup('env', 'JOB_ID') | int }}"
 
     - set_fact:
-        host: "{{ lookup('hashi_vault', secret=secret/data/dev/ctrl:host) }}"
-        user: "{{ lookup('hashi_vault', secret=secret/data/dev/ctrl:user) }}"
-        pass: "{{ lookup('hashi_vault', secret=secret/data/dev/ctrl:pass) }}"
+        host: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:host') }}"
+        user: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:user') }}"
+        pass: "{{ lookup('hashi_vault', 'secret=secret/data/dev/ctrl:pass') }}"
         job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host={{ host }}, username={{ username }}, password={{ pass }},verify_ssl=False) }}"
 
     - debug:
