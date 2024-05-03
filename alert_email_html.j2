@@ -19,7 +19,7 @@
     <p>This is an automated alert to inform you:</p>
     <p>Passwords are updated on below servers 
     <ul>
-     {% for host in groups['all'] %}
+     {% for host in ansible_play_hosts %}
         <li>{{ host }}</li>
      {% endfor %}
     </ul>
