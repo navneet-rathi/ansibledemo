@@ -16,7 +16,7 @@
 
     - name: Show debug output
       ansible.builtin.debug:
-        msg: "{{ifg.stdout}}"
+        msg: "{{ifg.stdout_lines}}"
         
 
 
