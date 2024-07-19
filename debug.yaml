@@ -11,7 +11,7 @@
         msg: "{{hostname.stdout}}"
 
     - name: Running ifconfig command to confirm and no funny bussness
-      ansible.builtin.shell: ifconfig
+      ansible.builtin.shell: ip addr
       register: ifg
 
     - name: Show debug output
