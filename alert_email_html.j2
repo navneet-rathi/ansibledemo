@@ -8,8 +8,52 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Password Change</title>
+    <title> User created or Password Updated</title>
+   <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0 auto;
+    }
+    
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
 
+    th {
+      background-color: #17469E;
+      color: white;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    td {
+      background-color: #f9f9f9;
+      font-size: 14px;
+    }
+
+    td.label {
+      font-weight: bold;
+      background-color: #e0e0e0;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 
 <body>
@@ -17,14 +61,23 @@
     <p>Dear Team,</p>
 
     <p>This is an automated alert to inform you:</p>
-    <p>Passwords are updated on below servers 
-    <ul>
-     {% for host in groups['all'] %}
-        <li>{{ host }}</li>
-     {% endfor %}
-    </ul>
+    <p>You need to update the password for below hosts
 
-    <p>Best regards,<br/>{{ user_email }}</p>
+    <table>
+      <tr>
+        <th>Host</th>
+        <th>Username</th>
+        <th>Password</th>
+      </tr>
+      {% for host in passdata.list %}
+      <tr>
+        <td>{{ inventory_hostname }}</td>
+        <td>{{ target_user | default(ansible_user) }}</td>
+        <td>{{ generated_password }}</td> 
+      </tr>
+      {% endfor %}
+    </table>
+    <p>Best regards,<br/>{{ awx_user_email }}</p>
 
 </body>
 
