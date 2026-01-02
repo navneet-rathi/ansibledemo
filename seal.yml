@@ -1,9 +1,9 @@
 ---
 - hosts: localhost
   tasks:
-    - name: Seal the vault
+    - name : Seal the vault
       hashivault_seal:
-      register: 'vault_seal'
+      register: vault_seal
       
     - name : check if vault is seal properly  
       debug: 
