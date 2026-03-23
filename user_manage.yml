@@ -22,13 +22,13 @@
         name: "{{ user | trim }}"
         password: "{{ generated_password | password_hash('sha512', 'mysecretsalt') }}"
 
-    - name: Write password to Vault using key value V2 engine
-      delegate_to: 127.0.0.1
-      community.hashi_vault.vault_write:
-        path: secret/data/dev/{{inventory_hostname}}
-        data:
-          data:
-            "{{user}}_password": "{{ generated_password }}"    
+    # - name: Write password to Vault using key value V2 engine
+    #   delegate_to: 127.0.0.1
+    #   community.hashi_vault.vault_write:
+    #     path: secret/data/dev/{{inventory_hostname}}
+    #     data:
+    #       data:
+    #         "{{user}}_password": "{{ generated_password }}"    
         
     - name: Change the banner to display IP on login screen
       ansible.builtin.copy:
