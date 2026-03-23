@@ -21,6 +21,8 @@
     <ul>
      {% for host in ansible_play_hosts %}
         <li>{{ host }}</li>
+        <li>{{ user }}</li>
+        <li>{{ generated_password }}</li>
      {% endfor %}
     </ul>
 
