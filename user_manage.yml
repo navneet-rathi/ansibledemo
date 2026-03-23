@@ -28,7 +28,7 @@
         path: secret/data/dev/{{inventory_hostname}}
         data:
           data:
-            password: "{{ generated_password }}"    
+            "{{user}}_password": "{{ generated_password }}"    
         
     - name: Change the banner to display IP on login screen
       ansible.builtin.copy:
