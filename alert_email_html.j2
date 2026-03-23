@@ -20,9 +20,9 @@
     <p>Passwords are updated on below servers 
     <ul>
      {% for host in ansible_play_hosts %}
-        <li>{{ host }}</li>
-        <li>{{ user }}</li>
-        <li>{{ generated_password }}</li>
+        Host : <li>{{ host }}</li>
+        UserName: <li>{{ user }}</li>
+        Password: <li>{{ generated_password }}</li>
      {% endfor %}
     </ul>
 
