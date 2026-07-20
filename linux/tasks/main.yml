@@ -1,6 +1,6 @@
 ---
 # tasks file for linuxdemo
-- name: copy the shell file to genrate report on target servers
+- name: Copy the shell file to genrate report on target servers
   ansible.builtin.copy:
     src: fsreport.sh
     dest: /tmp/report.sh
@@ -9,19 +9,19 @@
     mode: u+rwx,g-rx,o-rx
 
 - name: Execute the Shell script to Genrate report
-  shell: "sh /tmp/report.sh"
+  ansible.builtin.shell: "sh /tmp/report.sh"
 
 
 - name: Display /tmp/report.txt contents
-  command: cat report.txt chdir=/tmp
+  ansible.builtin.command: cat report.txt chdir=/tmp
   register: command_output
 
 - name: Print to console
-  debug:
-    msg: "{{command_output.stdout_lines}}"
+  ansible.builtin.debug:
+    msg: "{{ command_output.stdout_lines }}"
 
 #- name: Fetch all details in files
-#  fetch:
+#  ansible.builtin.fetch:
 #    src: /tmp/report.txt 
 #    dest: files/ 
 #    fail_on_missing: True 

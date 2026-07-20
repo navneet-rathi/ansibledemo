@@ -12,13 +12,13 @@
     - /install
     - /passive
     - /norestart
-    
+
 # One way to ensure the system is reliable, is to set WinRM to a delayed startup
 - name: Ensure WinRM starts when the system has settled and is ready to work reliably
   ansible.windows.win_service:
     name: WinRM
     start_mode: delayed
 
-- name: win_reboot
-  win_reboot:
+- name: Win_reboot
+  ansible.windows.win_reboot:
     reboot_timeout: 720
