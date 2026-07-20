@@ -24,7 +24,7 @@
         password: "{{ generated_password | password_hash('sha512', 'mysecretsalt') }}"
         create_home: true
         remove: "{{ status }}"
-        state: "{{ status }}"
+        #state: "{{ status }}"
       register: user_result
 
     - name: Display the result of user creation
