@@ -24,12 +24,13 @@
         password: "{{ generated_password | password_hash('sha512', 'mysecretsalt') }}"
         create_home: true
         remove: "{{ status }}"
+        state: "{{ status }}"
       register: user_result
 
     - name: Display the result of user creation
       ansible.builtin.debug:
         msg: "{{ user_result }}"
-          
+
     # - name: Write password to Vault using key value V2 engine
     #   delegate_to: 127.0.0.1
     #   community.hashi_vault.vault_write:
