@@ -1,15 +1,19 @@
 ---
-- hosts: all
-  become: yes
-  gather_facts: no
-  tasks:  
-    - name: put approved in the /tmp/job file to mark job as success 
-      shell: "echo approved >> /tmp/job" 
+- name: Mark job as approved
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Put approved in the /tmp/job file to mark job as success
+      ansible.builtin.lineinfile:
+        path: /tmp/job
+        line: "approved"
+        create: true
+        insertafter: EOF
       register: approvedoutput
-    
-    - name: print debug output
-      debug: 
-        msg: "{{ approvedoutput }}"    
+
+    - name: Print debug output
+      ansible.builtin.debug:
+        msg: "{{ approvedoutput }}"
 
     - name: Pause for 10 seconds for other job to read the approval
       ansible.builtin.pause:
@@ -18,4 +22,4 @@
     - name: Remove approval file (delete file) as after wait of 10 seconds
       ansible.builtin.file:
         path: /tmp/job
-        state: absent       
+        state: absent

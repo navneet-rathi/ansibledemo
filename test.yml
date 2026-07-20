@@ -7,7 +7,7 @@
   tasks:
     - set_fact:
         job_id: "{{ lookup('env', 'JOB_ID') | int }}"
-        
+
     - set_fact:
         job_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_id }}', host='aap1.example.com',
                                   username='admin', password='primod123', verify_ssl=False) }}"
@@ -15,14 +15,15 @@
       local_action: ansible.builtin.shell cat /runner/inventory/hosts
       register: inv
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ inv }}"
-        
-    - debug:
+
+    - ansible.builtin.debug:
         var: job_api
-        
-    - debug: msg="{{ pwd }}"
-    
+
+    - ansible.builtin.debug:
+        msg: "{{ pwd }}"
+
     - name: Pause for 5 minutes to build app cache
       ansible.builtin.pause:
         minutes: 5
